@@ -9,7 +9,7 @@ function Navbar() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("http://localhost:4000/dashboard", {
+        const res = await axios.get("https://zerodha-clone-1-8l95.onrender.com/dashboard", {
           withCredentials: true,
         });
 
@@ -26,7 +26,7 @@ function Navbar() {
 
   // logout
   const handleLogout = async () => {
-    await axios.get("http://localhost:4000/logout", {
+    await axios.get("https://zerodha-clone-1-8l95.onrender.com/logout", {
       withCredentials: true,
     });
     setIsAuth(false);
