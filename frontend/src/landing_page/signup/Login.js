@@ -32,7 +32,7 @@ const Login = () => {
         toast.success("Login Successful");
 
         setTimeout(() => {
-          window.location.href = "https://zerodha-clone-1-8l95.onrender.com"; // 🔥 dashboard
+          window.location.href = "https://zerodha-clone-2-ccyx.onrender.com"; //  frontend 
         }, 1000);
       } else {
         toast.error(data.message || "Error");

@@ -9,7 +9,7 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("http://localhost:4000/dashboard", {
+        await axios.get("https://zerodha-dashboard-m4gh.onrender.com", {
           withCredentials: true,
         });
 
