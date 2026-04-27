@@ -7,7 +7,6 @@ const cookieParser = require("cookie-parser");
 const bcrypt = require("bcryptjs");
 const axios = require("axios");
 
-
 const User = require("./model/User");
 const { HoldingsModel } = require("./model/HoldingsModel.js");
 const { PositionsModel } = require("./model/PositionsModel.js");
@@ -29,6 +28,8 @@ app.use(
       const allowedOrigins = [
         "http://localhost:3000",
         "http://localhost:3001",
+        "https://zerodha-clone-2-ccyx.onrender.com",
+        "https://zerodha-dashboard-m4gh.onrender.com",
       ];
 
       if (!origin || allowedOrigins.includes(origin)) {
@@ -38,7 +39,7 @@ app.use(
       }
     },
     credentials: true,
-  })
+  }),
 );
 app.use((req, res, next) => {
   res.header("Access-Control-Allow-Credentials", "true");
@@ -62,6 +63,7 @@ app.post("/signup", async (req, res) => {
     res.cookie("token", token, {
       httpOnly: true,
       sameSite: "lax",
+      secure: true,
     });
 
     res.json({ success: true });
@@ -151,12 +153,12 @@ app.post("/newOrder", verifyUser, async (req, res) => {
 // 🔐 Protected now
 app.get("/allOrders", verifyUser, async (req, res) => {
   try {
-    console.log("TOKEN:", req.cookies.token);   // 👈 ADD HERE
-    console.log("USER ID:", req.userId);  
+    console.log("TOKEN:", req.cookies.token); // 👈 ADD HERE
+    console.log("USER ID:", req.userId);
     const orders = await OrdersModel.find({
       userId: req.userId, // 🔥 only this user
     });
-     console.log("ORDERS:", orders); 
+    console.log("ORDERS:", orders);
 
     res.json(orders);
   } catch (err) {
@@ -164,10 +166,6 @@ app.get("/allOrders", verifyUser, async (req, res) => {
     res.status(500).send("Error");
   }
 });
-
-
-
-
 
 // ================= TEST ROUTES =================
 

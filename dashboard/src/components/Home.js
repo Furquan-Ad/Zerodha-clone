@@ -9,8 +9,7 @@ const Home = () => {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        await axios.get("https://zerodha-dashboard-m4gh.onrender.com", {
-          withCredentials: true,
+        await axios.get("https://zerodha-clone-1-8l95.onrender.com", {
         });
 
         console.log("User authenticated ✅");
