@@ -33,10 +33,10 @@ function Navbar() {
   }, []);
 
   // logout
-  const handleLogout = () => {
-  localStorage.removeItem("token"); // ✅ clear token
+const handleLogout = () => {
+  localStorage.removeItem("token");
   setIsAuth(false);
-  window.location.href = "https://zerodha-clone-2-ccyx.onrender.com/login";
+  window.location.href = "https://zerodha-clone-2-ccyx.onrender.com"; // ✅ no /login
 };
 
   return (
