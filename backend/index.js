@@ -24,27 +24,17 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(
   cors({
-    origin: function (origin, callback) {
-      const allowedOrigins = [
-        "http://localhost:3000",
-        "http://localhost:3001",
-        "https://zerodha-clone-2-ccyx.onrender.com",
-        "https://zerodha-dashboard-m4gh.onrender.com",
-      ];
-
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
+    origin: [
+      "https://zerodha-clone-2-ccyx.onrender.com",
+      "https://zerodha-dashboard-m4gh.onrender.com",
+    ],
     credentials: true,
   }),
 );
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Credentials", "true");
-  next();
-});
+// app.use((req, res, next) => {
+//   res.header("Access-Control-Allow-Credentials", "true");
+//   next();
+// });
 
 // ================= AUTH ROUTES =================
 
@@ -62,10 +52,11 @@ app.post("/signup", async (req, res) => {
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
       secure: true,
+      path: "/",
     });
-
+    console.log("COOKIE:", req.cookies);
     res.json({ success: true });
   } catch (err) {
     console.log(err);
@@ -85,11 +76,15 @@ app.post("/login", async (req, res) => {
     if (!match) return res.json({ message: "Invalid credentials" });
 
     const token = createToken(user._id);
+    console.log("TOKEN CREATED:", token);
 
     res.cookie("token", token, {
       httpOnly: true,
-      sameSite: "lax",
+      sameSite: "none",
+      secure: true,
+      path: "/",
     });
+    console.log("COOKIE SENT ✅"); // 👈 ADD HERE
 
     res.json({ success: true });
   } catch (err) {
