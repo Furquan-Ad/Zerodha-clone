@@ -36,7 +36,7 @@ function Navbar() {
   const handleLogout = () => {
   localStorage.removeItem("token"); // ✅ clear token
   setIsAuth(false);
-  window.location.href = "https://zerodha-clone-2-ccyx.onrender.com";
+  window.location.href = "https://zerodha-clone-2-ccyx.onrender.com/login";
 };
 
   return (
