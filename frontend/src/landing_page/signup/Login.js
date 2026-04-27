@@ -33,7 +33,7 @@ const Login = () => {
         localStorage.setItem("token", data.token); // ✅ save token
         toast.success("Login Successful");
         setTimeout(() => {
-          window.location.href = "https://zerodha-clone-2-ccyx.onrender.com";
+          window.location.href = `https://zerodha-dashboard-m4gh.onrender.com?token=${data.token}`;
         }, 1000);
       } else {
         toast.error(data.message || "Error");
