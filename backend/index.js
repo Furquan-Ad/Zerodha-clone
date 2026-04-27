@@ -31,7 +31,7 @@ app.use(
     credentials: true,
   })
 );
-app.options("*", cors({
+app.options("/(.*)", cors({
   origin: [
     "https://zerodha-clone-2-ccyx.onrender.com",
     "https://zerodha-dashboard-m4gh.onrender.com",
