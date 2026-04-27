@@ -73,7 +73,7 @@ function Navbar() {
             {isAuth && (
               <>
                 <li className="nav-item">
-<a className="nav-link" href="http://localhost:3001">Dashboard</a>                </li>
+<a className="nav-link" href="https://zerodha-dashboard-m4gh.onrender.com">Dashboard</a>                </li>
 
                 <li className="nav-item">
                   <button className="nav-link btn" onClick={handleLogout}>
