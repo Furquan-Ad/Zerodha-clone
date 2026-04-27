@@ -9,9 +9,17 @@ function Navbar() {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const res = await axios.get("https://zerodha-clone-1-8l95.onrender.com/dashboard", {
-          withCredentials: true,
-        });
+        const token = localStorage.getItem("token"); // ✅ get token
+        if (!token) return setIsAuth(false);
+
+        const res = await axios.get(
+          "https://zerodha-clone-1-8l95.onrender.com/dashboard",
+          {
+            headers: {
+              Authorization: `Bearer ${token}`, // ✅ send token
+            },
+          },
+        );
 
         if (res.data) {
           setIsAuth(true);
@@ -25,17 +33,15 @@ function Navbar() {
   }, []);
 
   // logout
-  const handleLogout = async () => {
-    await axios.get("https://zerodha-clone-1-8l95.onrender.com/logout", {
-      withCredentials: true,
-    });
-    setIsAuth(false);
-  };
+  const handleLogout = () => {
+  localStorage.removeItem("token"); // ✅ clear token
+  setIsAuth(false);
+  window.location.href = "https://zerodha-clone-2-ccyx.onrender.com/login";
+};
 
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary bg-light border-bottom">
       <div className="container">
-        
         <Link className="navbar-brand" to="/">
           <img
             src="/media/images/logo.svg"
@@ -55,16 +61,19 @@ function Navbar() {
 
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
-
             {/* 🔴 NOT LOGGED IN */}
             {!isAuth && (
               <>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/signup">Signup</Link>
+                  <Link className="nav-link" to="/signup">
+                    Signup
+                  </Link>
                 </li>
 
                 <li className="nav-item">
-                  <Link className="nav-link" to="/login">Login</Link>
+                  <Link className="nav-link" to="/login">
+                    Login
+                  </Link>
                 </li>
               </>
             )}
@@ -73,7 +82,13 @@ function Navbar() {
             {isAuth && (
               <>
                 <li className="nav-item">
-<a className="nav-link" href="https://zerodha-dashboard-m4gh.onrender.com">Dashboard</a>                </li>
+                  <a
+                    className="nav-link"
+                    href="https://zerodha-dashboard-m4gh.onrender.com"
+                  >
+                    Dashboard
+                  </a>{" "}
+                </li>
 
                 <li className="nav-item">
                   <button className="nav-link btn" onClick={handleLogout}>
@@ -85,21 +100,28 @@ function Navbar() {
 
             {/* COMMON LINKS */}
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to="/about">
+                About
+              </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/product">Product</Link>
+              <Link className="nav-link" to="/product">
+                Product
+              </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/pricing">Pricing</Link>
+              <Link className="nav-link" to="/pricing">
+                Pricing
+              </Link>
             </li>
 
             <li className="nav-item">
-              <Link className="nav-link" to="/support">Support</Link>
+              <Link className="nav-link" to="/support">
+                Support
+              </Link>
             </li>
-
           </ul>
         </div>
       </div>
