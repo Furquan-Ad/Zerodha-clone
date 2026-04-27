@@ -24,8 +24,10 @@ const Login = () => {
     const { data } = await axios.post(
       "https://zerodha-clone-1-8l95.onrender.com/login",
       inputValue
+      
       // ❌ remove withCredentials, not needed anymore
     );
+    console.log(data)
 
     if (data.success) {
       localStorage.setItem("token", data.token); // ✅ save token
