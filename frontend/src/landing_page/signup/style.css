@@ -1,0 +1,85 @@
+/* RESET */
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* BODY CENTER */
+.main {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(143, 187, 204, 1) 35%,
+    rgba(0, 212, 255, 1) 100%
+  );
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+/* FORM CONTAINER */
+.form_container {
+  background: #fff;
+  padding: 2rem 3rem;
+  border-radius: 10px;
+  width: 350px;
+  box-shadow: 8px 8px 24px rgba(66, 68, 90, 1);
+}
+
+/* TITLE */
+.form_container h2 {
+  margin-bottom: 1rem;
+  color: rgba(0, 212, 255, 1);
+}
+
+/* FORM */
+.form_container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+/* INPUT GROUP */
+.form_container div {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* INPUT */
+.form_container input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 8px;
+  font-size: 14px;
+  outline: none;
+}
+
+/* BUTTON */
+.form_container button {
+  background: rgba(0, 212, 255, 1);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* LINKS */
+span {
+  font-size: 14px;
+}
+
+span a {
+  color: rgba(0, 212, 255, 1);
+  text-decoration: none;
+}

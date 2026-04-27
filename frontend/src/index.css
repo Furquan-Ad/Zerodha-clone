@@ -1,0 +1,59 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+               
+.nav-item{
+  margin: 15px;
+}
+.lists li{
+  margin-bottom: 15px ;
+  font-size: small;
+}
+.listings{
+  list-style: none;
+  padding-left: 0;
+}
+
+.listings li {
+  margin-bottom: 10px;
+  
+}
+.listings li a{
+   text-decoration: none;
+}
+
+.footer > a{
+  text-decoration: none;
+  
+}
+
+#heroPage{
+  background-color: rgb(56, 126, 209);
+  color: white
+}
+#heroPage a{
+  color: white
+}
+#heroPage input {
+  padding: 20px 50px;
+  width: 100%;
+  font-size: 20px;
+  border-radius: 10px;
+  border: none;
+}
+
+#supportWrapper{
+  display: flex;
+  justify-content: space-between;
+  margin: 0 150px ;
+}
