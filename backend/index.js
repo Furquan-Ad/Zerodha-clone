@@ -29,8 +29,9 @@ app.use(
       "https://zerodha-dashboard-m4gh.onrender.com",
     ],
     credentials: true,
-  }),
+  })
 );
+app.options("*", cors()); // ✅ add this line
 // app.use((req, res, next) => {
 //   res.header("Access-Control-Allow-Credentials", "true");
 //   next();
