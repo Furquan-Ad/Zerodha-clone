@@ -22,57 +22,57 @@ const Signup = () => {
   };
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const { data } = await axios.post(
-      "https://zerodha-clone-1-8l95.onrender.com/signup",
-      inputValue
-      // ❌ remove withCredentials, not needed anymore
-    );
+    e.preventDefault();
+    try {
+      const { data } = await axios.post(
+        "https://zerodha-clone-1-8l95.onrender.com/signup",
+        inputValue,
+        // ❌ remove withCredentials, not needed anymore
+      );
 
-    if (data.success) {
-      localStorage.setItem("token", data.token); // ✅ save token
-      toast.success("signup Successful");
-      setTimeout(() => {
-        window.location.href = "https://zerodha-clone-2-ccyx.onrender.com";
-      }, 1000);
-    } else {
-      toast.error(data.message || "Error");
+      if (data.success) {
+        localStorage.setItem("token", data.token); // ✅ save token
+        toast.success("signup Successful");
+        setTimeout(() => {
+          window.location.href = `https://zerodha-dashboard-m4gh.onrender.com?token=${data.token}`;
+        }, 1000);
+      } else {
+        toast.error(data.message || "Error");
+      }
+    } catch (err) {
+      toast.error("Server Error");
     }
-  } catch (err) {
-    toast.error("Server Error");
-  }
-};
+  };
 
   return (
     <div className="main">
-    <div className="form_container">
-      <h2>Signup Account</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email</label>
-          <input type="email" name="email" onChange={handleOnChange} />
-        </div>
+      <div className="form_container">
+        <h2>Signup Account</h2>
+        <form onSubmit={handleSubmit}>
+          <div>
+            <label>Email</label>
+            <input type="email" name="email" onChange={handleOnChange} />
+          </div>
 
-        <div>
-          <label>Username</label>
-          <input type="text" name="username" onChange={handleOnChange} />
-        </div>
+          <div>
+            <label>Username</label>
+            <input type="text" name="username" onChange={handleOnChange} />
+          </div>
 
-        <div>
-          <label>Password</label>
-          <input type="password" name="password" onChange={handleOnChange} />
-        </div>
+          <div>
+            <label>Password</label>
+            <input type="password" name="password" onChange={handleOnChange} />
+          </div>
 
-        <button>Signup</button>
+          <button>Signup</button>
 
-        <span>
-          Already have an account? <Link to="/login">Login</Link>
-        </span>
-      </form>
+          <span>
+            Already have an account? <Link to="/login">Login</Link>
+          </span>
+        </form>
 
-      <ToastContainer />
-    </div>
+        <ToastContainer />
+      </div>
     </div>
   );
 };

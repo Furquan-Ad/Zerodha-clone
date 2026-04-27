@@ -4,16 +4,15 @@ import axios from "axios";
 const Summary = () => {
   const [username, setUsername] = useState("");
 
-  useEffect(() => {
-    axios
-      .get("https://zerodha-clone-1-8l95.onrender.com/dashboard", {
-        withCredentials: true, // 🔥 important
-      })
-      .then((res) => {
-        setUsername(res.data.username);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+ useEffect(() => {
+  const token = localStorage.getItem("token");
+  axios
+    .get("https://zerodha-clone-1-8l95.onrender.com/dashboard", {
+      headers: { Authorization: `Bearer ${token}` },
+    })
+    .then((res) => setUsername(res.data.username))
+    .catch((err) => console.log(err));
+}, []);
 
   return (
     <>

@@ -7,14 +7,13 @@ const Positions = () => {
 
   const [allPositions, setAllPositions] = useState([]);
 
-   useEffect(() => {
+  useEffect(() => {
+  const token = localStorage.getItem("token");
   axios
     .get("https://zerodha-clone-1-8l95.onrender.com/allPositions", {
-      withCredentials: true, // 🔥 REQUIRED
+      headers: { Authorization: `Bearer ${token}` },
     })
-    .then((res) => {
-      setAllPositions(res.data);
-    })
+    .then((res) => setAllPositions(res.data))
     .catch((err) => console.log("ERROR:", err));
 }, []);
 

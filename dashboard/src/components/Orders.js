@@ -3,11 +3,12 @@ import axios from "axios";
 
 const Orders = () => {
   const [orders, setOrders] = useState([]);
-
-  useEffect(() => {
+  
+useEffect(() => {
+  const token = localStorage.getItem("token");
   axios
     .get("https://zerodha-clone-1-8l95.onrender.com/allOrders", {
-      withCredentials: true, // 🔥 IMPORTANT
+      headers: { Authorization: `Bearer ${token}` },
     })
     .then((res) => setOrders(res.data))
     .catch((err) => console.log("ERROR:", err));

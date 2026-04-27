@@ -9,26 +9,19 @@ const BuyActionWindow = ({ uid }) => {
 
   const generalContext = useContext(GeneralContext); // ✅
 
-  const handleBuyClick = async () => {
-    try {
-      await axios.post("https://zerodha-clone-1-8l95.onrender.com/newOrder", {
-        
-        name: uid,
-        qty: stockQuantity,
-        price: stockPrice,
-        mode: "BUY",
-        
-      },
-      {
-    withCredentials: true, // 🔥 THIS IS THE FIX
-  }
+ 
+const handleBuyClick = async () => {
+  const token = localStorage.getItem("token");
+  try {
+    await axios.post("https://zerodha-clone-1-8l95.onrender.com/newOrder",
+      { name: uid, qty: stockQuantity, price: stockPrice, mode: "BUY" },
+      { headers: { Authorization: `Bearer ${token}` } }
     );
-
-      generalContext.closeBuyWindow();
-    } catch (err) {
-      console.log(err);
-    }
-  };
+    generalContext.closeBuyWindow();
+  } catch (err) {
+    console.log(err);
+  }
+};
 
   const handleCancelClick = () => {
     generalContext.closeBuyWindow();

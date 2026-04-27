@@ -7,14 +7,12 @@ const Holdings = () => {
   const [allHoldings, setAllHoldings] = useState([]);
 
  useEffect(() => {
+  const token = localStorage.getItem("token");
   axios
     .get("https://zerodha-clone-1-8l95.onrender.com/allHoldings", {
-      withCredentials: true, 
+      headers: { Authorization: `Bearer ${token}` },
     })
-    .then((res) => {
-      console.log(res.data);
-      setAllHoldings(res.data);
-    });
+    .then((res) => setAllHoldings(res.data));
 }, []);
 
 
