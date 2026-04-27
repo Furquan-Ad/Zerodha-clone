@@ -6,7 +6,7 @@ const Summary = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4000/dashboard", {
+      .get("https://zerodha-clone-1-8l95.onrender.com/dashboard", {
         withCredentials: true, // 🔥 important
       })
       .then((res) => {

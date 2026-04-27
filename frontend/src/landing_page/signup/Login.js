@@ -23,7 +23,7 @@ const Login = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/login",
+        "https://zerodha-clone-1-8l95.onrender.com/login",
         inputValue,
         { withCredentials: true }
       );
@@ -32,7 +32,7 @@ const Login = () => {
         toast.success("Login Successful");
 
         setTimeout(() => {
-          window.location.href = "http://localhost:3000"; // 🔥 dashboard
+          window.location.href = "https://zerodha-clone-1-8l95.onrender.com"; // 🔥 dashboard
         }, 1000);
       } else {
         toast.error(data.message || "Error");

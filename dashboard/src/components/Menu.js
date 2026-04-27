@@ -17,7 +17,7 @@ const Menu = () => {
   return (
     <div className="menu-container ">
       {/* <img src="logo.png" style={{ width: "50px" }} alt="logo" /> */}
-      <a style={{ textDecoration: "none" }} href="http://localhost:3000">
+      <a style={{ textDecoration: "none" }} href="https://zerodha-clone-1-8l95.onrender.com">
         <img
           src="logo.png"
           alt="logo"

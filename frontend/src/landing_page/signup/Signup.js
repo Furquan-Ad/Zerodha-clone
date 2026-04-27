@@ -26,7 +26,7 @@ const Signup = () => {
 
     try {
       const { data } = await axios.post(
-        "http://localhost:4000/signup",
+        "https://zerodha-clone-1-8l95.onrender.com",
         inputValue,
         { withCredentials: true }
       );
@@ -34,7 +34,7 @@ const Signup = () => {
       if (data.success) {
         toast.success("Signup Successful");
         setTimeout(() => {
-          window.location.href = "http://localhost:3000";
+          window.location.href = "https://zerodha-clone-1-8l95.onrender.com";
         }, 1000);
       } else {
         toast.error(data.message || "Error");

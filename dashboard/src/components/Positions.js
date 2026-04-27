@@ -9,7 +9,7 @@ const Positions = () => {
 
    useEffect(() => {
   axios
-    .get("http://localhost:4000/allPositions", {
+    .get("https://zerodha-clone-1-8l95.onrender.com/allPositions", {
       withCredentials: true, // 🔥 REQUIRED
     })
     .then((res) => {

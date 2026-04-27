@@ -19,7 +19,7 @@ const Home = () => {
         console.log("Not authorized ❌");
 
         // 🔴 redirect to login
-        window.location.href = "http://localhost:3000/login";
+        window.location.href = "https://zerodha-clone-1-8l95.onrender.com/login";
       }
     };
 
