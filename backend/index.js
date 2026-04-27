@@ -38,37 +38,10 @@ app.use(
 
 // ================= AUTH ROUTES =================
 
-// Signup
-app.post("/signup", async (req, res) => {
-  try {
-    const { email, password, username } = req.body;
-
-    const user = await User.findOne({ email });
-    if (user) return res.json({ message: "User exists" });
-
-    const newUser = await User.create({ email, password, username });
-
-    const token = createToken(newUser._id);
-
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    console.log("COOKIE:", req.cookies);
-    res.json({ success: true });
-  } catch (err) {
-    console.log(err);
-    res.status(500).send("Error");
-  }
-});
-
 // Login
 app.post("/login", async (req, res) => {
   try {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
     if (!user) return res.json({ message: "Invalid credentials" });
 
@@ -76,17 +49,23 @@ app.post("/login", async (req, res) => {
     if (!match) return res.json({ message: "Invalid credentials" });
 
     const token = createToken(user._id);
-    console.log("TOKEN CREATED:", token);
+    res.json({ success: true, token }); // ✅ send token in body
+  } catch (err) {
+    console.log(err);
+    res.status(500).send("Error");
+  }
+});
 
-    res.cookie("token", token, {
-      httpOnly: true,
-      sameSite: "none",
-      secure: true,
-      path: "/",
-    });
-    console.log("COOKIE SENT ✅"); // 👈 ADD HERE
+// Signup
+app.post("/signup", async (req, res) => {
+  try {
+    const { email, password, username } = req.body;
+    const user = await User.findOne({ email });
+    if (user) return res.json({ message: "User exists" });
 
-    res.json({ success: true });
+    const newUser = await User.create({ email, password, username });
+    const token = createToken(newUser._id);
+    res.json({ success: true, token }); // ✅ send token in body
   } catch (err) {
     console.log(err);
     res.status(500).send("Error");

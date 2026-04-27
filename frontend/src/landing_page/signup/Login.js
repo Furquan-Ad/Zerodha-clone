@@ -19,29 +19,27 @@ const Login = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
+  try {
+    const { data } = await axios.post(
+      "https://zerodha-clone-1-8l95.onrender.com/login",
+      inputValue
+      // ❌ remove withCredentials, not needed anymore
+    );
 
-    try {
-      const { data } = await axios.post(
-        "https://zerodha-clone-1-8l95.onrender.com/login",
-        inputValue,
-        { withCredentials: true }
-      );
-
-      if (data.success) {
-        toast.success("Login Successful");
-
-        setTimeout(() => {
-          window.location.href = "https://zerodha-clone-2-ccyx.onrender.com"; //  frontend 
-        }, 1000);
-      } else {
-        toast.error(data.message || "Error");
-      }
-    } catch (err) {
-      toast.error("Server Error");
+    if (data.success) {
+      localStorage.setItem("token", data.token); // ✅ save token
+      toast.success("Login Successful");
+      setTimeout(() => {
+        window.location.href = "https://zerodha-clone-2-ccyx.onrender.com";
+      }, 1000);
+    } else {
+      toast.error(data.message || "Error");
     }
-  };
-
+  } catch (err) {
+    toast.error("Server Error");
+  }
+};
   return (
     <div className="main">
     <div className="form_container">
